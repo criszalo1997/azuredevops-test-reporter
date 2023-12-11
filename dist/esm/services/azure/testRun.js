@@ -1,5 +1,9 @@
 import { RunCreateModel } from '../../model/runCreateModel';
 import { getPoints } from './testCasePoints';
+//sube un attachment al test case de azure
+export async function createTestResultAttachment(azureClient, attachmentRequestModel, azureConfig, testRunId, testCaseResultId) {
+    return azureClient.createTestResultAttachment(attachmentRequestModel, azureConfig.projectId, testRunId, testCaseResultId);
+}
 export async function createTestRun(azureClient, axiosClient, azureConfig) {
     const plan = {
         id: `${azureConfig.planId}`,

@@ -5,6 +5,18 @@ import { getPoints } from './testCasePoints'
 import * as TestInterfaces from 'azure-devops-node-api/interfaces/TestInterfaces'
 import { AxiosInstance } from 'axios'
 
+//sube un attachment al test case de azure
+export async function createTestResultAttachment(
+  azureClient: ITestApi,
+  attachmentRequestModel: TestInterfaces.TestAttachmentRequestModel,
+  azureConfig: IAzureConfig,
+  testRunId: number,
+  testCaseResultId: number
+): Promise<TestInterfaces.TestAttachmentReference> {
+  return azureClient.createTestResultAttachment(attachmentRequestModel, azureConfig.projectId, testRunId, testCaseResultId)
+}
+
+
 export async function createTestRun(
   azureClient: ITestApi,
   axiosClient: AxiosInstance,

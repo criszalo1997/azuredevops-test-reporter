@@ -68,5 +68,17 @@ class AzureTestPlanReporter {
             return yield (0, testRun_1.getLastTestRunId)(this._azureClient, this._config);
         });
     }
+    uploadAttachmentTestCase(uniTest, runId, attachmentType, comment, fileName, stream) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const attachment = {
+                attachmentType: attachmentType,
+                comment: comment,
+                fileName: fileName,
+                stream: stream
+            };
+            const upload = yield (0, testRun_1.createTestResultAttachment)(this._azureClient, attachment, this._config, runId, uniTest);
+            return upload;
+        });
+    }
 }
 exports.AzureTestPlanReporter = AzureTestPlanReporter;

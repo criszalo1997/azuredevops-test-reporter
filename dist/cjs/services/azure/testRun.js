@@ -9,9 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLastTestRunId = exports.setCompletedRun = exports.setInProgressRun = exports.createTestRun = void 0;
+exports.getLastTestRunId = exports.setCompletedRun = exports.setInProgressRun = exports.createTestRun = exports.createTestResultAttachment = void 0;
 const runCreateModel_1 = require("../../model/runCreateModel");
 const testCasePoints_1 = require("./testCasePoints");
+//sube un attachment al test case de azure
+function createTestResultAttachment(azureClient, attachmentRequestModel, azureConfig, testRunId, testCaseResultId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return azureClient.createTestResultAttachment(attachmentRequestModel, azureConfig.projectId, testRunId, testCaseResultId);
+    });
+}
+exports.createTestResultAttachment = createTestResultAttachment;
 function createTestRun(azureClient, axiosClient, azureConfig) {
     return __awaiter(this, void 0, void 0, function* () {
         const plan = {

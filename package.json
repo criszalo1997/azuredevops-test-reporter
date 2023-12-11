@@ -1,6 +1,6 @@
 {
-  "name": "@gmangiapelo/azuredevops-test-reporter",
-  "version": "0.0.9",
+  "name": "azuredevops-test-reporter",
+  "version": "0.0.10",
   "description": "Azure DevOps Test Reporter to inject result of automatic test run in Azure DevOps TestPlan",
   "types": "dist/esm/index.d.ts",
   "main": "dist/cjs/index.js",
@@ -24,7 +24,7 @@
     "package": "npm run build && npm pack",
     "test": "jest --no-cache --runInBand",
     "test:cov": "jest --coverage --no-cache --runInBand",
-    "addscope": "node tools/packagejson name @gmangiapelo/azuredevops-test-reporter",
+    "addscope": "node tools/packagejson name @criszalo1997/azuredevops-test-reporter",
     "sample": "npx ts-node samples/test-plan-reporter.ts "
   },
   "publishConfig": {
@@ -44,13 +44,13 @@
   ],
   "author": "Gianluca Mangiapelo <gianlucamangiapelo.mangiapelog@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/gianlucamangiapelo/azuredevops-test-reporter",
+  "homepage": "https://github.com/criszalo1997/azuredevops-test-reporter",
   "repository": {
     "type": "git",
-    "url": "git@github.com:gianlucamangiapelo/azuredevops-test-reporter.git"
+    "url": "git@github.com:criszalo1997/azuredevops-test-reporter.git"
   },
   "bugs": {
-    "url": "https://github.com/gianlucamangiapelo/azuredevops-test-reporter/issues"
+    "url": "https://github.com/criszalo1997/azuredevops-test-reporter/issues"
   },
   "dependencies": {
     "axios": "^0.27.2",

@@ -1,6 +1,6 @@
 import { createConnection } from './services/azure/connection';
 import { setNotExecutedTest, setTestResult } from './services/azure/testResults';
-import { createTestRun, getLastTestRunId, setCompletedRun, setInProgressRun, } from './services/azure/testRun';
+import { createTestRun, getLastTestRunId, setCompletedRun, setInProgressRun, createTestResultAttachment } from './services/azure/testRun';
 import { validate } from './services/validation';
 import axios from 'axios';
 export class AzureTestPlanReporter {
@@ -46,5 +46,15 @@ export class AzureTestPlanReporter {
     }
     async getCurrentTestRunId() {
         return await getLastTestRunId(this._azureClient, this._config);
+    }
+    async uploadAttachmentTestCase(uniTest, runId, attachmentType, comment, fileName, stream) {
+        const attachment = {
+            attachmentType: attachmentType,
+            comment: comment,
+            fileName: fileName,
+            stream: stream
+        };
+        const upload = await createTestResultAttachment(this._azureClient, attachment, this._config, runId, uniTest);
+        return upload;
     }
 }

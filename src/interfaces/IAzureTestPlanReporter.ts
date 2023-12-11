@@ -1,6 +1,8 @@
 import {
   TestCaseResult,
   TestRun,
+  TestAttachmentRequestModel,
+  TestAttachmentReference
 } from 'azure-devops-node-api/interfaces/TestInterfaces'
 import { ITestResult } from './ITestResult'
 

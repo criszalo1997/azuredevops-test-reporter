@@ -1,6 +1,8 @@
 import {
   TestCaseResult,
   TestRun,
+  TestAttachmentReference,
+  TestAttachmentRequestModel
 } from 'azure-devops-node-api/interfaces/TestInterfaces'
 import { ITestApi } from 'azure-devops-node-api/TestApi'
 import { IAzureConfig } from './interfaces/IAzureConfig'
@@ -13,6 +15,7 @@ import {
   getLastTestRunId,
   setCompletedRun,
   setInProgressRun,
+  createTestResultAttachment
 } from './services/azure/testRun'
 import { validate } from './services/validation'
 import axios, { AxiosInstance } from 'axios'
@@ -88,4 +91,23 @@ export class AzureTestPlanReporter implements IAzureTestPlanReporter {
   public async getCurrentTestRunId(): Promise<number> {
     return await getLastTestRunId(this._azureClient, this._config)
   }
+
+  public async uploadAttachmentTestCase(uniTest:number, runId:number, attachmentType:string, comment:string,fileName:string,stream:string): Promise<TestAttachmentReference> {
+    const attachment:TestAttachmentRequestModel  = {
+      attachmentType: attachmentType,
+      comment: comment,
+      fileName: fileName,
+      stream: stream
+    }
+
+    const upload = await createTestResultAttachment(
+      this._azureClient,
+      attachment,
+      this._config,
+      runId,
+      uniTest
+    )
+    return upload
+  }
+
 }
